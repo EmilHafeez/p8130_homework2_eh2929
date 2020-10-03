@@ -1,0 +1,31 @@
+---
+title: "Homework 2 Output"
+author: "Emil Hafeez (eh2928)"
+date: "10/3/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Problem 1
+
+### Part 1
+Given that "in a group of 113 patients with prostatic cancer, 79 have a positive diagnosis" and that "in a group of 217 individuals without prostatic cancer, 10 have a positive diagnosis,", we have the following table. 
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline & With Prostatic Cancer & Without Prostatic Cancer \\
+\hline Test Positive (T) & 79 & 10 \\
+\hline Test Negative (T) & 34 & 207 \\
+\hline Total & 113 & 217 \\
+\hline
+\end{tabular}
+\end{center}
+
+### Part 2
+
+
+### Part 3
+
+
