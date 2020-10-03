@@ -23,8 +23,10 @@ Given that "in a group of 113 patients with prostatic cancer, 79 have a positive
 \end{tabular}
 \end{center}
 
-### Part 2
+To calculate the sensitivity and the specificity of the test, we take the sensitivity to be equal to $P(Test Positive | Disease Positive)$ and the specificity to be $P(Test Negative | Disease Negative)$. For the sensitivity, equates to $\frac{79}{113}$ and for the specificity to be $\frac{207}{217}$, which is to say the sensitivity equals $0.6991$ or $69.91$% and the specificity equals $0.9539$ or $95.39$%. 
 
+### Part 2
+In this other hypothetical scenario, it will not be enough to use only the data provided by this new test being developed to assess its test characteristics like sensitivity and specificity. This is because determining sensitivity and specificity requires reference to a gold-standard test, so that we can compare the accuracy of the new test data to a standard for which the "truth" is known; with just the new test data available, this investigation cannot be made.
 
 ### Part 3
 
