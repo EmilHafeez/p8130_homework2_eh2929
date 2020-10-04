@@ -31,10 +31,13 @@ To calculate the sensitivity and the specificity of the test, we take the sensit
 In this other hypothetical scenario, it will not be enough to use only the data provided by this new test being developed to assess its test characteristics like sensitivity and specificity. This is because determining sensitivity and specificity requires reference to a gold-standard test, so that we can compare the accuracy of the new test data to a standard for which the "truth" is known; with just the new test data available, this investigation cannot be made.
 
 ### Part 3
-a) In this example, the $P(T+| D+)$ is given as $0.8$ and the $P(T-|D-)$ as $0.95$. The $P(D)$ is $0.5$. Therefore, we can use Bayes' Theorem and then apply the LTP to the denominator to determine the following $P(D|T)$.
+#### a) 
+In this example, the $P(T+| D+)$ is given as $0.8$ and the $P(T-|D-)$ as $0.95$. The $P(D)$ is $0.5$. Therefore, we can use Bayes' Theorem and then apply the LTP to the denominator to determine the following $P(D|T)$.
 
-$P(T|D)$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T|D)P(D)+(P(T|D-)P(D-)}$ = $\frac{(0.8)(0.5)}{(0.8)(0.5)+(0.95)(0.5)}$ = $0.45714$ or $45.71$%. 
+\begin{center}
+$P(T|D)$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T|D)P(D)+(P(T|D-)P(D-)}$ = $\frac{(0.8)(0.5)}{(0.8)(0.5)+(0.95)(0.5)}$ = $0.45714$. 
+\end{center}
 
 This is known as the positive predictive value (PPV).
 
-
+#### b)
