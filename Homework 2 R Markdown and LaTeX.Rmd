@@ -19,13 +19,13 @@ Given that "in a group of 113 patients with prostatic cancer, 79 have a positive
 \begin{tabular}{|l|l|l|}
 \hline & With Prostatic Cancer & Without Prostatic Cancer \\
 \hline Test Positive (T) & 79 & 10 \\
-\hline Test Negative (T) & 34 & 207 \\
+\hline Test Negative (T-) & 34 & 207 \\
 \hline Total & 113 & 217 \\
 \hline
 \end{tabular}
 \end{center}
 
-To calculate the sensitivity and the specificity of the test, we take the sensitivity to be equal to $P(Test | Disease)$ and the specificity to be $P(Test- | Disease -)$. For the sensitivity, equates to $\frac{79}{113}$ and for the specificity to be $\frac{207}{217}$, which is to say the sensitivity equals $0.6991$ or $69.91$% and the specificity equals $0.9539$ or $95.39$%. 
+To calculate the sensitivity and the specificity of the test, we take the sensitivity to be equal to $P(Test | Disease)$ and the specificity to be $P(T- | D-)$. For the sensitivity, equates to $\frac{79}{113}$ and for the specificity to be $\frac{207}{217}$, which is to say the sensitivity equals $0.6991$ or $69.91$% and the specificity equals $0.9539$ or $95.39$%. 
 
 ### Part 2
 In this other hypothetical scenario, it will not be enough to use only the data provided by this new test being developed to assess its test characteristics like sensitivity and specificity. This is because determining sensitivity and specificity requires reference to a gold-standard test, so that we can compare the accuracy of the new test data to a standard for which the "truth" is known; with just the new test data available, this investigation cannot be made.
@@ -60,7 +60,7 @@ The probability that less than (not less than or equal to) 10 of these 50 patien
 
 Where $n$ is the number of patients total, $p$ is the probability of success, and $1-p$ is the probability of failure, such that $n = 20, p = 0.345, (1-p) = 0.655$. 
 
-$\P}(X < 10)=\sum_{x=10}^{20} \frac{10 !}{x !(10-x) !}(0.345)^{x}(1-0.345)^{10-x}$
+$P(X < 10)=\sum_{x=10}^{20} \frac{10 !}{x !(10-x) !}(0.345)^{x}(1-0.345)^{10-x}$
 
 We can use r to compute the code "pbinom(9, 50, 0.345)". We use 9 rather than 10 because we are computing less than 10, not equal to 10.
 
@@ -71,3 +71,9 @@ The probability that 34.5% or $\frac{17}{50}$ of these patients are prediabetic 
 10 of these 50 patients are prediabetic is given by the following equation.
 
 #### Part 4
+
+In some conditions, the Binomial distribution can be approximated by the Poisson distribution: when n is large (> 100) and when the probability of success is small $p<0.01$. These conditions are not met, and so it would not be appropriate to use this approximation method. 
+
+
+# Problem 3
+
