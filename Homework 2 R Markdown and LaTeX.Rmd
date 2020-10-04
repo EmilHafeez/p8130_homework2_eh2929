@@ -9,7 +9,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Problem 1
+# Problem 1
 
 I use the shorthand $P(T)$ = $P(Test Positive)$, and $P(T-)$ = $P(Test Negative)$, and similar for $P(D)$ where D is the disease at hand.
 
@@ -35,9 +35,39 @@ In this other hypothetical scenario, it will not be enough to use only the data 
 In this example, the $P(T+| D+)$ is given as $0.8$ and the $P(T-|D-)$ as $0.95$. The $P(D)$ is $0.5$. Therefore, we can use Bayes' Theorem and then apply the LTP to the denominator to determine the following $P(D|T)$.
 
 \begin{center}
-$P(T|D)$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T|D)P(D)+(P(T|D-)P(D-)}$ = $\frac{(0.8)(0.5)}{(0.8)(0.5)+(0.95)(0.5)}$ = $0.45714$. 
+$P(T|D)$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T|D)P(D)+(P(T|D-)P(D-)}$ = $\frac{(0.8)(0.5)}{(0.8)(0.5)+(0.95)(0.5)}$ = $0.4571$. 
 \end{center}
 
 This is known as the positive predictive value (PPV).
 
 #### b)
+
+We now calculate the same test characteristic as above in Part 3a, but now we decrease the pre-test probability of the disease to 0.1 instead of 0.5. 
+
+\begin{center}
+$P(T|D)$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T|D)P(D)+(P(T|D-)P(D-)}$ = $\frac{(0.8)(0.1)}{(0.8)(0.1)+(0.95)(0.9)}$ = $0.0856$. 
+\end{center}
+
+
+# Problem 2
+#### Part 1 
+
+We are given that $Probability(Prediabetic) = P(D) = 0.345$, and it follows from the co,plement that $P(D) + P(D^c) = 1$ such that that $P(D^c) = (1-P(D)) = (1-0.345) = 0.655$ 
+
+#### Part 2
+
+The probability that less than (not less than or equal to) 10 of these 50 patients are prediabetic is given by the following equation. We observe that the scenario follows a binomial distribution $X$~$Bin(50, 0.0345)$ where X is a random variable denoting the number of patients that are prediabetic among the 50 randomly selected group. We observe the binomial distribution given that there are a fixed number of trials, trials are independent, there are only two possible outcomes (success or failure on each draw), and the probability of success if fixed for each trial.
+
+Where $n$ is the number of patients total, $p$ is the probability of success, and $1-p$ is the probability of failure, such that $n = 20, p = 0.345, (1-p) = 0.655$. 
+
+$\P}(X < 10)=\sum_{x=10}^{20} \frac{10 !}{x !(10-x) !}(0.345)^{x}(1-0.345)^{10-x}$
+
+We can use r to compute the code "pbinom(9, 50, 0.345)". We use 9 rather than 10 because we are computing less than 10, not equal to 10.
+
+#### Part 3
+
+The probability that 34.5% or $\frac{17}{50}$ of these patients are prediabetic is given by the expected value of the binomial distribution, where $E(X) = np$ where $E(X) = \frac{17}{50}$ and $n=50$. Therefore $p = \frac{E(X)}{n} = \frac{17/50}{50} = 0.34$
+
+10 of these 50 patients are prediabetic is given by the following equation.
+
+#### Part 4
