@@ -11,6 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Problem 1
 
+I use the shorthand $P(T)$ = $P(Test Positive)$, and $P(T-)$ = $P(Test Negative)$, and similar for $P(D)$ where D is the disease at hand.
+
 ### Part 1
 Given that "in a group of 113 patients with prostatic cancer, 79 have a positive diagnosis" and that "in a group of 217 individuals without prostatic cancer, 10 have a positive diagnosis,", we have the following table. 
 \begin{center}
@@ -23,11 +25,16 @@ Given that "in a group of 113 patients with prostatic cancer, 79 have a positive
 \end{tabular}
 \end{center}
 
-To calculate the sensitivity and the specificity of the test, we take the sensitivity to be equal to $P(Test Positive | Disease Positive)$ and the specificity to be $P(Test Negative | Disease Negative)$. For the sensitivity, equates to $\frac{79}{113}$ and for the specificity to be $\frac{207}{217}$, which is to say the sensitivity equals $0.6991$ or $69.91$% and the specificity equals $0.9539$ or $95.39$%. 
+To calculate the sensitivity and the specificity of the test, we take the sensitivity to be equal to $P(Test | Disease)$ and the specificity to be $P(Test- | Disease -)$. For the sensitivity, equates to $\frac{79}{113}$ and for the specificity to be $\frac{207}{217}$, which is to say the sensitivity equals $0.6991$ or $69.91$% and the specificity equals $0.9539$ or $95.39$%. 
 
 ### Part 2
 In this other hypothetical scenario, it will not be enough to use only the data provided by this new test being developed to assess its test characteristics like sensitivity and specificity. This is because determining sensitivity and specificity requires reference to a gold-standard test, so that we can compare the accuracy of the new test data to a standard for which the "truth" is known; with just the new test data available, this investigation cannot be made.
 
 ### Part 3
+a) In this example, the $P(T+| D+)$ is given as $0.8$ and the $P(T-|D-)$ as $0.95$. The $P(D)$ is $0.5$. Therefore, we can use Bayes' Theorem and then apply the LTP to the denominator to determine the following $P(D|T)$.
+
+$P(T|D)$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T|D)P(D)+(P(T|D-)P(D-)}$ = $\frac{(0.8)(0.5)}{(0.8)(0.5)+(0.95)(0.5)}$ = $0.45714$ or $45.71$%. 
+
+This is known as the positive predictive value (PPV).
 
 
