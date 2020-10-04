@@ -83,11 +83,51 @@ Here, the incidence of uveal melanoma in the US can be assumed to follow a Poiss
 
 $P(X=x)=f(x)=\frac{\lambda^{x} e^{-\lambda}}{x !}, x=0,1,2, \ldots, n$ 
 
-In this circumstance, we use $\lambda$ as the overall rate for the country adjusted for the NYC population, such that 5 per million at a population of 8.3 million expects a rate of $\lambda = 41.5$ cases in a given year. Terefore,
-$P(X=30) = frac{41.5^{30}{e^{-41.5}{30!}$  = $P(X=x)=\frac{41.5^{30} e^{-41.5}}{30!}$ 
+In this circumstance, we use $\lambda$ as the overall rate for the country adjusted to the NYC population, such that 5 per million at a population of 8.3 million expects a rate of $\lambda = 41.5$ cases in a given year. Therefore,
+$P(X=30) = \frac{41.5^{30} e^{-41.5}}{30!}$
 
 We can calculate this in R using the code "dpois(4, 10)", where $P(X=30) = 0.01243$
 
 ### Part b)
+To conduct this part, we use $\lambda$ as the expected number of events in a given year, the race-specific rate of disease per million computed a population of 8.3 million (where Asian people are .14 of the population, non-Hispanic whites are 0.428, and Black people are 0.243).
+
+For example, for the 6.02 per million in non-Hispanic whites, which constitute 0.428 of the NYC population, $\frac{6.02}{1000000} = \frac{\lambda}{8300000*0.428}$ such that $\lambda = 3.5529$. We can do this for each racial group, so:
+
+\begin{tabular}{|l|l|l|}
+\hline Racial group & Racial Demographic proportion in the NYC population & Race-specific $\lambda$ \\
+\hline Asian & 0.14 & 0.45318 \\
+\hline non-Hispanic white & 0.428 & 3.5529 \\
+\hline Black & 0.243 & 0.d \\
+\hline
+\end{tabular}
+
+Now, given the parameter $\lambda$, we can compute the corresponding probabilities in the Poisson distribution using the R code cited previously, "dpois(x,$\lambda$"). 
+For Asian people, $P(X=30) = \frac{0.45318^{30} e^{-0.45318}}{30!} = 1.168553e-43$, for non-Hispanic white people it's $P(X=30) = \frac{3.5529^{30} e^{-3.5529}}{30!} = 3.554877e-18$, and for Black people it's $P(X=30) = \frac{0.625239^{30} e^{-0.625239}}{30!} = 1.535267e-39$.
+
+While each of these probabilities are very small, we can see that the probability of 30 cases in a given year among non-Hispanic white people is much larger than Asian or Black people. While we hold X=30 constant, the higher rate per million and the higher representation of non-Hispanic white people in the NYC population combine to form a higher $\lambda$ than either other group, and both the $\lambda$ and the proportion of the population is much lower. This is reflected in the probabilities computed for each racial group. 
+
+# Problem 4
+
+### Part 1 
+
+The probability that the sample mean is less than 98 degrees Fahrenheit is given by determining the corresponding critical value and its one-sided probability on the t-distribution, associated with the given sample statistics. The population mean is $\mu = 99.9$, the standard deviation is $\sigma = 0.73$ which we can square to get the variance, and in this case the sample size $n = 40$ randomly chosen individuals.
+
+The $Z=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}$ = $Z=\frac{98-99.9}{0.73/\sqrt{40}}$ so that the $P(X<98)=P(Z<-16.46117138)$ = "pt(t_stats, 39, lower.tail = TRUE)" = 1.884964e-19. 
+
+### Part 2
+
+The probability that the sample mean is greater than 100.5 degrees Fahrenheit is given by determining the corresponding critical value and its one-sided probability on the t-distribution, associated with the given sample statistics. The population mean is still $\mu = 99.9$, the standard deviation is $\sigma = 0.73$ which we can square to get the variance, and in this case the sample size $n = 40$ randomly chosen individuals.
+
+The $Z=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}$ = $Z=\frac{100.5-99.9}{0.73/\sqrt{40}}$ so that the $P(X>100.5)=P(Z<-5.19826)$ = "pt(t_stats, 39, lower.tail = TRUE)" = 0.9999967. 
+
+### Part 3
+
+The 90th percentile of the sampling distribution of the sample mean is given by the value of t where 90% of the distribution is to the left of this t-value. The corresponding t value is 1.303639 (from `"qt(0.9, 39)")`. Then, we use the equation $X = \mu + Z\sigma = 99.9+(1.303639*0.73) = 100.85165647$. 
+
+### Part 4
+The cutoff values for the milddle 50% of the sampling distribution of the sample mean.
+To get the cutoff values for the middle 50% of the sampling distribution of the sample mean $\overline{X}$, we need to find the t-values which correspond to containing the 25% AUC probability to the left of the sample mean and 25% to the right of the sample mean. These are the 25th and 75th percentiles. Therefore, from `"qt(0.25,39)" and "qt(0.75,30)"` or by taking the first one and applying symmetry, we get t values of $-0.6808236$ and $0.6806236$. 
+
+These give us cutoff values in the distribution at hand of $X = \mu + Z\sigma = 99.9+(-0.6808326*0.73) = 99.402992202$ and $X = \mu + Z\sigma = 99.9+(0.6808326*0.73) = 100.397007798$. 
 
 
