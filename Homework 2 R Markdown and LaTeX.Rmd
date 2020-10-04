@@ -77,3 +77,17 @@ In some conditions, the Binomial distribution can be approximated by the Poisson
 
 # Problem 3
 
+### Part a)
+
+Here, the incidence of uveal melanoma in the US can be assumed to follow a Poisson distribution characterizing the number of occurrences of an event (uveal melanoma) given that the events occur one at a time (one case a time per person, no one person can get it twice simultaneously), and the number of expected events is given as a constant. In this case, the probability that exactly 30 cases occur in a given year in NYC is given by the following equation.
+
+$P(X=x)=f(x)=\frac{\lambda^{x} e^{-\lambda}}{x !}, x=0,1,2, \ldots, n$ 
+
+In this circumstance, we use $\lambda$ as the overall rate for the country adjusted for the NYC population, such that 5 per million at a population of 8.3 million expects a rate of $\lambda = 41.5$ cases in a given year. Terefore,
+$P(X=30) = frac{41.5^{30}{e^{-41.5}{30!}$  = $P(X=x)=\frac{41.5^{30} e^{-41.5}}{30!}$ 
+
+We can calculate this in R using the code "dpois(4, 10)", where $P(X=30) = 0.01243$
+
+### Part b)
+
+
