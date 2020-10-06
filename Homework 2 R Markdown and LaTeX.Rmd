@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Problem 1
 
-I use the shorthand $P(T)$ = $P(Test Positive)$, and $P(T-)$ = $P(Test Negative)$, and similar for $P(D)$ where D is the disease at hand.
+I use the shorthand $P(T)$ = $P(Test Positive)$, and $P(T-)$ = $P(Test Negative)$, and similar for $P(D)$ and $P(D-)$where D is the disease at hand.
 
 ### Part 1
 Given that "in a group of 113 patients with prostatic cancer, 79 have a positive diagnosis" and that "in a group of 217 individuals without prostatic cancer, 10 have a positive diagnosis,", we have the following table. 
@@ -25,7 +25,7 @@ Given that "in a group of 113 patients with prostatic cancer, 79 have a positive
 \end{tabular}
 \end{center}
 
-To calculate the sensitivity and the specificity of the test, we take the sensitivity to be equal to $P(Test | Disease)$ and the specificity to be $P(T- | D-)$. For the sensitivity, equates to $\frac{79}{113}$ and for the specificity to be $\frac{207}{217}$, which is to say the sensitivity equals $0.6991$ or $69.91$% and the specificity equals $0.9539$ or $95.39$%. 
+To calculate the sensitivity and the specificity of the test, we take the sensitivity to be equal to $P(T|D)$ and the specificity to be $P(T- | D-)$. The sensitivity equates to $\frac{79}{113}$ and for the specificity to be $\frac{207}{217}$, which is to say the sensitivity equals $0.6991$ or $69.91$% and the specificity equals $0.9539$ or $95.39$%. 
 
 ### Part 2
 In this other hypothetical scenario, it will not be enough to use only the data provided by this new test being developed to assess its test characteristics like sensitivity and specificity. This is because determining sensitivity and specificity requires reference to a gold-standard test, so that we can compare the accuracy of the new test data to a standard for which the "truth" is known. This reference is missing. With just the new test data available, this investigation cannot be made.
@@ -48,11 +48,12 @@ We now calculate the same test characteristic as above in Part 3a, but now we de
 $P(D|T)$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T)}$ = $\frac{P(T|D)*P(D)}{P(T|D)P(D)+(P(T|D-)P(D-)}$ = $\frac{(0.8)(0.1)}{(0.8)(0.1)+(0.05)(0.9)}$ = $0.64$. 
 \end{center}
 
+We can observe that the same test statistic (PPV) is reduced when there is a lower pre-test probability (by a notable margin, 0.94 to 0.64).
 
 # Problem 2
 #### Part 1 
 
-The probability that zero of these 50 patients are prediabetic is given by the following equation. We observe that the scenario follows a binomial distribution where the number of patients is $n = 50$ and the probability of success $ p = 0.345)$, $X$~$Bin(50, 0.345)$ where X is a random variable denoting the number of patients selected that are prediabetic among the 50 randomly selected group. We observe the binomial distribution given that there are a fixed number of trials, trials are independent, there are only two possible outcomes (success or failure on each draw), and the probability of success if fixed for each trial.
+The probability that zero of these 50 patients are prediabetic is given by the following equation. We observe that the scenario follows a binomial distribution where the number of patients is $n = 50$ and the probability of success $p = (0.345)$, $X$~$Bin(50, 0.345)$ where X is a random variable denoting the number of patients selected that are prediabetic among the 50 randomly selected group. We observe the binomial distribution given that there are a fixed number of trials, trials are independent, there are only two possible outcomes (success or failure on each draw), and the probability of success if fixed for each trial.
 
 We observe that the scenario follows a binomial distribution $X$~$Bin(50, 0.0345)$ where X is a random variable denoting the number of patients that are prediabetic among the 50 randomly selected group, where $n$ is the number of patients total, $p$ is the probability of success, and $1-p$ is the probability of failure, such that $n = 50, p = 0.345, (1-p) = 0.655$, 
 
@@ -60,13 +61,15 @@ $\mathrm{P}(X = x)=\sum_{x}^{n} \frac{n!}{x !(n-x) !}(p)^{x}(1-p)^{n-x}$
 
 $P(X = 0)=\frac{50 !}{0!(50-0) !}(0.345)^{x}(1-0.345)^{50-0}$
 
-Using R `dbinom(0,50,0.345)` we can computer that $P(X = 0)= 6.487315e-10. 
+Using R `dbinom(0,50,0.345)` we can compute that $P(X = 0)= 6.487315e-10$. 
 
 #### Part 2
 
+Similarly, though with a slightly different formula, we can compute the probability that less than 10 patients are diabetic (that X $\leq$ 9). We use 9 rather than 10 because we are computing less than 10, not equal to 10.
+ 
  $P(X < 9)=\sum_{x=0}^{9} \frac{9 !}{x !(9-x) !}(0.345)^{x}(1-0.345)^{9-x} = 0.008153186$
 
-We can use r to compute the code "pbinom(9, 50, 0.345)". We use 9 rather than 10 because we are computing less than 10, not equal to 10.
+We can use R to compute the code "pbinom(9, 50, 0.345)" = 0.008153186. 
 
 #### Part 3
 
@@ -74,24 +77,23 @@ The probability that 34.5% or $\frac{17}{50}$ of these patients are prediabetic 
 
 #### Part 4
 
-In some conditions, the Binomial distribution can be approximated by the Poisson distribution: when n is large (> 100) and when the probability of success is small $p<0.01$. These conditions are not met, and so it would not be appropriate to use this approximation method.
+In some cases, the Binomial distribution can be approximated by the Poisson distribution: when n is large (> 100) and when the probability of success is small $p<0.01$. These conditions are not met, and so it would not be appropriate to use this approximation method.
 
 
 # Problem 3
 
 ### Part a)
 
-Here, the incidence of uveal melanoma in the US can be assumed to follow a Poisson distribution characterizing the number of occurrences of an event (uveal melanoma) given that the events occur one at a time (one case a time per person, no one person can get it twice simultaneously), and the number of expected events is given as a constant. In this case, the probability that exactly 30 cases occur in a given year in NYC is given by the following equation.
+Here, the incidence of uveal melanoma in the US can be assumed to follow a Poisson distribution characterizing the number of occurrences of an event (uveal melanoma), where the events occur one at a time (one case a time per person, no one person can get it twice simultaneously), and the number of expected events is given as a constant. In this case, the probability that exactly 30 cases occur in a given year in NYC is given by the following equation.
 
 $P(X=x)=f(x)=\frac{\lambda^{x} e^{-\lambda}}{x !}, x=0,1,2, \ldots, n$ 
 
-In this circumstance, we use $\lambda$ as the overall rate for the country adjusted to the NYC population, such that 5 per million at a population of 8.3 million expects a rate of $\lambda = 41.5$ cases in a given year. Therefore,
-$P(X=30) = \frac{41.5^{30} e^{-41.5}}{30!}$
+We use $\lambda$ as the overall rate for the country adjusted to the NYC population, such that 5 per million at a population of 8.3 million has a rate of $\lambda = 41.5$ cases in a given year. Therefore, $P(X=30) = \frac{41.5^{30} e^{-41.5}}{30!}$
 
 We can calculate this in R using the code "dpois(30, 41.5)", so $P(X=30) = 0.01243$
 
 ### Part b)
-To conduct this part, we use $\lambda$ as the expected number of events in a given year, the race-specific rate of disease per million computed a population of 8.3 million (where Asian people are .14 of the population, non-Hispanic whites are 0.428, and Black people are 0.243).
+To conduct this part, we use $\lambda$ as the expected number of events in a given year, the race-specific rate of disease per million computed to a population of 8.3 million (where Asian people are 0.14 of the population, non-Hispanic whites are 0.428, and Black people are 0.243).
 
 For example, for the 6.02 per million in non-Hispanic whites, which constitute 0.428 of the NYC population, $\frac{6.02}{1000000} = \frac{\lambda}{8300000*0.428}$ such that $\lambda = 3.5529$. We can do this for each racial group, so:
 
@@ -99,7 +101,7 @@ For example, for the 6.02 per million in non-Hispanic whites, which constitute 0
 \hline Racial group & Racial Demographic proportion in the NYC population & Race-specific $\lambda$ \\
 \hline Asian & 0.14 & 0.45318 \\
 \hline non-Hispanic white & 0.428 & 3.5524 \\
-\hline Black & 0.243 & 0.d \\
+\hline Black & 0.243 & 0.625239 \\
 \hline
 \end{tabular}
 
