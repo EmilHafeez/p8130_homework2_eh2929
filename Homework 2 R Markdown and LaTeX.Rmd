@@ -73,7 +73,7 @@ We can use R to compute the code "pbinom(9, 50, 0.345)" = 0.008153186.
 
 #### Part 3
 
-The probability that 34.5% or $\frac{17}{50}$ of these patients are prediabetic is given by the expected value of the binomial distribution, similar to Question 2 Part 1, where  $P(X = 17)=\frac{50 !}{17!(50-17) !}(0.345)^{17}(1-0.345)^{50-17}$. This value is given by `dbinom(17,50,.345)` = 0.1180887. 
+The probability that 34.5% or $\frac{17}{50}$ of these patients are prediabetic is given by the expected value of the binomial distribution, similar to Question 2 Part 1, where  $P(X = 17)=\frac{50 !}{17!(50-17) !}(0.345)^{17}(1-0.345)^{50-17}$. This value is given by `dbinom(17,50,.345)` = 0.1180887. If you want to round the $\frac{17}{50}$ up, you could do `dbinom(18,50,.345)` = $0.1140322$, as can be customary for this circumstance.
 
 #### Part 4
 
@@ -85,13 +85,15 @@ Note that because the probability of any specific value in a continuous distribu
 
 ##### Itemizing each question:
 
-2.1, $P(X = 0)$, is approximated using $P(-.5<=X<=.5)$, though we cannot have a negative value here, and so we use the cumulative probability from 0 to 0.5 using `pnorm(-.5,mean = 17.25,sd = 3.361)` = $6.418205e-08$, versus the Binomial's value of 6.487315e-10 (Normal approximation is higher).
+2.1, $P(X = 0)$, is approximated using $P(-.5<=X<=.5)$, though we cannot have a negative value here, and so we use the cumulative probability from -0.5 to 0.5 using `> pnorm(.5,mean = 17.25,sd = 3.361) - pnorm(-.5,mean = 17.25,sd = 3.361)` = $2.478203e-07$, versus the Binomial's value of 6.487315e-10 (Normal approximation is higher).
 
 We use this mean because, while we are given for the population distribution of patients we would expect 34.5 patients to be prediabetic (given),  in this application we have only a sample of this, where the mean is equal to $np = (.345)(50) = 17.25$. A formula for the standard deviation is $\sqrt{n*p*(1-p)}$, which is equal to $3.36136$.
 
-2.2, $P(X \leq 9)$, is approximated using $P(X \leq 9.5)$, pnorm(9.5,mean = 17.25,sd = 3.361) = $0.01055919$, versus the Binomial's value of 0.008153186 (Normal approximation is higher). 
+2.2, $P(X \leq 9)$, is approximated using $P(X \leq 9.5)$, pnorm(9.5,mean = 17.25,sd = 3.361) - pnorm(-.5,mean = 17.25,sd = 3.361) = $0.01055913$, versus the Binomial's value of 0.008153186 (Normal approximation is higher). 
 
-2.3, This value is given by `pnorm(17.5, mean = 17.25,sd = 3.361) - pnorm(16.5, mean = 17.25,sd = 3.361)` = 0.1179368, versus the Binomial's value 0.1180887 (Normal approximation is slightly smaller).
+2.3, This value is given by `pnorm(17.5, mean = 17.25,sd = 3.361) - pnorm(16.5, mean = 17.25,sd = 3.361)` = 0.1179368, versus the Binomial's value 0.1180887 (Normal approximation is slightly smaller this time). We could also round 17.5 to 17 for consistency or 18. 
+
+These approximations do not strictly match, though are relevant enough for our usage here. 
 
 # Problem 3
 
@@ -128,8 +130,6 @@ While each of these probabilities are very small, we can see that the probabilit
 ### Part 1 
 
 Given that an independent random sample of size > 30 (sufficiently large) is drawn from the population of sick individuals at Columbia University Medical Center, the shape of the sampling distribution is approximately normal ($\overline X$~$\mu,\frac{\sigma^2}{n}$) such that $Z=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}$.
-
-The probability that the sample mean is less than 98 degrees Fahrenheit is given by determining the corresponding critical value and its one-sided probability on the t-distribution, associated with the given sample statistics. The population mean is $\mu = 99.9$, the standard deviation is $\sigma = 0.73$ which we can square to get the variance, and in this case the sample size $n = 40$ randomly chosen individuals.
 
 The $Z=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}$ = $Z=\frac{98-99.9}{0.73/\sqrt{40}}$ so that the $P(X<98)=P(Z<-16.46117138)$ = "pnorm(98,99.9,sd=.1154231,lower.tail = TRUE)" = 3.486602e-61. 
 
