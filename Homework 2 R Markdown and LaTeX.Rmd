@@ -67,7 +67,7 @@ Using R `dbinom(0,50,0.345)` we can compute that $P(X = 0)= 6.487315e-10$.
 
 Similarly, though with a slightly different formula, we can compute the probability that less than 10 patients are diabetic (that X $\leq$ 9). We use 9 rather than 10 because we are computing less than 10, not equal to 10.
  
- $P(X < 9)=\sum_{x=0}^{9} \frac{9 !}{x !(9-x) !}(0.345)^{x}(1-0.345)^{9-x} = 0.008153186$
+ $P(X \leq 9)=\sum_{x=0}^{9} \frac{9 !}{x !(9-x) !}(0.345)^{x}(1-0.345)^{9-x} = 0.008153186$
 
 We can use R to compute the code "pbinom(9, 50, 0.345)" = 0.008153186. 
 
@@ -77,7 +77,21 @@ The probability that 34.5% or $\frac{17}{50}$ of these patients are prediabetic 
 
 #### Part 4
 
-In some cases, the Binomial distribution can be approximated by the Poisson and the Normal distributions: when n is large (> 100) and when the probability of success is small $p<0.01$. These conditions are not met, and so it would not be appropriate to use this approximation method.  
+In some cases, the Binomial distribution can be approximated by the Poisson distribution: when n is large (> 100) and when the probability of success is small $p<0.01$. These conditions are not met, and so it would not be appropriate to use this approximation method.  
+
+However, the Binomial distribution can also be approximated using the Normal distribution when $np>10,$ and $n(1-p)>10$, and in this case $np = (50)(0.345)>10$ and $50(0.655) > 10$, and so we can approximate using the normal distribution. 
+
+Note that because the probability of any specific value in a continuous distribution is equal to zero, we approximate using a continuity correction of plus and minus 0.5 where appropriate. 
+
+##### Itemizing each question:
+
+2.1, $P(X = 0)$, is approximated using $P(-.5<=X<=.5)$, though we cannot have a negative value here, and so we use the cumulative probability from 0 to 0.5 using `pnorm(-.5,mean = 17.25,sd = 3.361)` = $6.418205e-08$, versus the Binomial's value of 6.487315e-10 (Normal approximation is higher).
+
+We use this mean because, while we are given for the population distribution of patients we would expect 34.5 patients to be prediabetic (given),  in this application we have only a sample of this, where the mean is equal to $np = (.345)(50) = 17.25$. A formula for the standard deviation is $\sqrt{n*p*(1-p)}$, which is equal to $3.36136$.
+
+2.2, $P(X \leq 9)$, is approximated using $P(X \leq 9.5)$, pnorm(9.5,mean = 17.25,sd = 3.361) = $0.01055919$, versus the Binomial's value of 0.008153186 (Normal approximation is higher). 
+
+2.3, This value is given by `pnorm(17.5, mean = 17.25,sd = 3.361) - pnorm(16.5, mean = 17.25,sd = 3.361)` = 0.1179368, versus the Binomial's value 0.1180887 (Normal approximation is slightly smaller).
 
 # Problem 3
 
@@ -135,3 +149,5 @@ The cutoff values for the middle 50% of the sampling distribution of the sample 
 To get the cutoff values for the middle 50% of the sampling distribution of the sample mean $\overline{X}$, we need to find the critical values which correspond to containing the 25% AUC probability to the left of the sample mean and 25% to the right of the sample mean. These are the 25th and 75th percentiles. Therefore, from `"qnorm(0.25, mean = 99.9, sd=.1154231, lower.tail = T)" and "qnorm(0.75, mean = 99.9, sd=.1154231, lower.tail = T)"` or by taking the first one and applying symmetry.  
 
 These give us cutoff values for the middle 50% of the sampling distribution of the sample mean $\overline X$ of $99.82215$ and $99.97785$. 
+
+Thanks!
