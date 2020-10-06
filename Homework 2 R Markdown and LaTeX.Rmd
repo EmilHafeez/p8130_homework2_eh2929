@@ -77,8 +77,7 @@ The probability that 34.5% or $\frac{17}{50}$ of these patients are prediabetic 
 
 #### Part 4
 
-In some cases, the Binomial distribution can be approximated by the Poisson distribution: when n is large (> 100) and when the probability of success is small $p<0.01$. These conditions are not met, and so it would not be appropriate to use this approximation method.
-
+In some cases, the Binomial distribution can be approximated by the Poisson and the Normal distributions: when n is large (> 100) and when the probability of success is small $p<0.01$. These conditions are not met, and so it would not be appropriate to use this approximation method.  
 
 # Problem 3
 
